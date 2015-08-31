@@ -1,0 +1,23 @@
+.controls-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  //align-items: center;
+}
+
+
+.control-button-wrapper {
+  width: 49%;
+
+  .control-button {
+
+  }
+}
+
+.control-strict-wrapper {
+  line-height: 38px;
+
+  label.control-strict {
+    margin-bottom: 0;
+  }
+}

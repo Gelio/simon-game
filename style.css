@@ -45,3 +45,27 @@ header.header {
   background-color: #2980b9; }
   .game-button.blue.active {
     background-color: #3498db; }
+
+.controls-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
+.control-button-wrapper {
+  width: 49%; }
+
+.control-strict-wrapper {
+  line-height: 38px; }
+  .control-strict-wrapper label.control-strict {
+    margin-bottom: 0; }
+
+footer.footer {
+  font-size: 0.8em; }
