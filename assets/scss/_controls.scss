@@ -60,3 +60,21 @@
     //transition: all 0.5s linear 0.3s;
   }
 }
+
+
+// Win notification
+.win-notification {
+  font-size: 5em;
+  font-weight: bold;
+  color: #8BC34A;
+
+  transition: transform 0.5s cubic-bezier(0.42, 0, 0.33, 2.5) 0.2s;
+
+  transform: scale(0);
+  opacity: 0;
+
+  &.active {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

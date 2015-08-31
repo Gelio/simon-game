@@ -6,6 +6,8 @@ function Game() {
     this.gameInProgress = false;
     this.queuePlayback = false;
     this.userInput = false;
+
+    this.won = false;
 }
 
 Game.prototype.addRandomStep = function() {

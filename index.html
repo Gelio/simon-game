@@ -65,6 +65,7 @@
             <div class="row m-y-md">
                 <div class="streak col-xs-12 text-center" ng-class="{'active': currentStreak > 0}">
                     <h2>Streak: {{currentStreak}}</h2>
+                    <span class="win-notification" ng-class="{'active': game.won}">You win!</span>
                 </div>
             </div>
 

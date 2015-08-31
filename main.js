@@ -14,11 +14,19 @@
         }),
         new Howl({
             urls: ['assets/sounds/errorSound.mp3']
+        }),
+        new Howl({
+            urls: ['assets/sounds/winSound.mp3']
         })
     ];
 
     var QUEUE_PLAYBACK_DELAY = 1500,    // delay after which queue starts playing
-        BUTTON_PLAYBACK_DELAY = 200,    // delay between buttons
+        BUTTON_PLAYBACK_DELAY = [       // delay between buttons with ranking (1-4, 5-8, 9-12, 13-20)
+            500,
+            400,
+            300,
+            200
+        ],
         GAME_WIN_CONDITION = 20;        // number of steps to win the game
 
     var simonGame = angular.module("simonGame", ['angularRipple']);
@@ -39,7 +47,8 @@
         $scope.currentStreak = 0;
 
         $scope.buttonActive = [false, false, false, false];
-        var buttonTimeoutPromises = [null, null, null, null];
+        var buttonTimeoutPromises = [null, null, null, null],
+            playbackPromises = [];
 
         $scope.buttonPress = function(buttonID) {
             if(!$scope.game.gameInProgress || !$scope.game.userInput)
@@ -47,17 +56,36 @@
 
             var correct = $scope.game.checkStep(buttonID);
             if(correct) {
-                playButton(buttonID);
-                if($scope.game.currentStep == GAME_WIN_CONDITION) {
-                    // win
-                    // TODO: it!
+                playButton(buttonID, $scope.game.currentStep);
+
+                if($scope.game.currentStep+1 == $scope.game.currentQueueLength) {
+                    if($scope.game.currentQueueLength == GAME_WIN_CONDITION) {
+                        // win
+                        /*for(var i=0; i < 4; ++i) {
+                            if(i != buttonID)
+                                playButton(i, 0);
+                        }*/
+                        $scope.game.gameInProgress = false;
+                        $scope.game.won = true;
+                        setTimeout(function() {
+                            sounds[5].play();
+                        }, getButtonPlaybackDelay(GAME_WIN_CONDITION));
+
+                    }
+                    else {
+                        $scope.game.addRandomStep();
+                        $scope.game.resetStep();
+                        updateCurrentStreak();
+
+                        playbackQueue();
+                    }
                 }
                 else {
-
+                    $scope.game.nextStep();
                 }
             }
             else {
-                playButton(buttonID, true);  // play it muted (only highlight)
+                playButton(buttonID, $scope.game.currentStep, true);  // play it muted (only highlight)
                 sounds[4].play(); // play an error sound
 
                 if($scope.strictMode) {
@@ -68,6 +96,7 @@
                 else {
                     /*$scope.game.userInput = false;
                     $timeout(playbackQueue, 500);*/
+                    $scope.game.resetStep();
                     playbackQueue();
                 }
             }
@@ -88,10 +117,11 @@
             else {
                 // Reset
                 $scope.game = new Game();
+                cancelPlaybackPromises();
             }
         };
 
-        function playButton(buttonID, muted) {
+        function playButton(buttonID, currentStep, muted) {
             // UI play buttons
             if(muted !== true)
                 sounds[buttonID].play();
@@ -105,31 +135,54 @@
             buttonTimeoutPromises[buttonID] = $timeout(function() {
                 $scope.buttonActive[buttonID] = false;
                 buttonTimeoutPromises[buttonID] = null;
-            }, 500);
+            }, getButtonPlaybackDelay(currentStep));
         }
 
 
         function playbackQueue() {
             $scope.game.userInput = false;
             $scope.game.queuePlayback = true;
+            //$scope.game.resetStep();
+            playbackPromises = [];
 
-            var currentButtonNumber = 0;
+            var currentStep = 0,
+                buttonDelay = getButtonPlaybackDelay($scope.game.currentQueueLength);
+
             $scope.game.currentQueue.forEach(function(button) {
-                $timeout(function() {
-                    playButton(button);
-                }, QUEUE_PLAYBACK_DELAY+currentButtonNumber*BUTTON_PLAYBACK_DELAY);
+                playbackPromises.push(
+                    $timeout(function() {
+                        playButton(button, currentStep);
+                    }, QUEUE_PLAYBACK_DELAY+currentStep*buttonDelay)
+                );
 
-                ++currentButtonNumber;
+                ++currentStep;
             });
             $timeout(function() {
                 $scope.game.userInput = true;
                 $scope.game.queuePlayback = false;
-            }, QUEUE_PLAYBACK_DELAY+currentButtonNumber*BUTTON_PLAYBACK_DELAY);
+            }, QUEUE_PLAYBACK_DELAY+currentStep*buttonDelay);
+        }
+
+        function cancelPlaybackPromises() {
+            playbackPromises.forEach(function(promise) {
+                $timeout.cancel(promise);
+            });
         }
 
 
         function updateCurrentStreak() {
             $scope.currentStreak = $scope.game.currentQueueLength;
+        }
+
+        function getButtonPlaybackDelay(currentStep) {
+            if(currentStep < 5)
+                return BUTTON_PLAYBACK_DELAY[0];
+            else if(currentStep < 9)
+                return BUTTON_PLAYBACK_DELAY[1];
+            else if(currentStep < 13)
+                return BUTTON_PLAYBACK_DELAY[2];
+            else
+                return BUTTON_PLAYBACK_DELAY[3];
         }
     }]);
 })();
