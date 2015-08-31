@@ -22,9 +22,9 @@
 
     var QUEUE_PLAYBACK_DELAY = 1500,    // delay after which queue starts playing
         BUTTON_PLAYBACK_DELAY = [       // delay between buttons with ranking (1-4, 5-8, 9-12, 13-20)
+            700,
             500,
-            400,
-            300,
+            350,
             200
         ],
         GAME_WIN_CONDITION = 20;        // number of steps to win the game
@@ -135,7 +135,7 @@
             buttonTimeoutPromises[buttonID] = $timeout(function() {
                 $scope.buttonActive[buttonID] = false;
                 buttonTimeoutPromises[buttonID] = null;
-            }, getButtonPlaybackDelay(currentStep));
+            }, getButtonPlaybackDelay(currentStep)*0.7);
         }
 
 

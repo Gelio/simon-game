@@ -12,6 +12,7 @@ function Game() {
 
 Game.prototype.addRandomStep = function() {
     this.currentQueue.push(Math.floor(Math.random()*4));
+    
     this.currentQueueLength = this.currentQueue.length;
 };
 
