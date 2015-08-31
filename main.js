@@ -14,7 +14,7 @@
         })
     ];
 
-    var simonGame = angular.module("simonGame", []);
+    var simonGame = angular.module("simonGame", ['angularRipple']);
 
     simonGame.controller("MainCtrl", ["$scope", "$timeout", function($scope, $timeout) {
         /*

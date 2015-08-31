@@ -2,17 +2,32 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  //align-items: center;
 }
 
 
+// Start/stop button
 .control-button-wrapper {
   width: 49%;
+}
 
-  .control-button {
+.control-button {
+  background-color: #9b59b6;
+  color: $fontColorInverted;
+  border: none;
 
+  transition: box-shadow 0.3s ease-in-out;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7),
+  0 2px 5px -2px rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7),
+    0 5px 5px -2px rgba(0, 0, 0, 0.5);
   }
 }
+
+
+// Strict mode
 
 .control-strict-wrapper {
   line-height: 38px;
