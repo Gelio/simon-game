@@ -11,11 +11,12 @@
 }
 
 .control-button {
-  background-color: #9b59b6;
+  background-color: #673AB7;
   color: $fontColorInverted;
   border: none;
+  margin: auto;
 
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out, width 0.2s ease-in-out;
 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7),
   0 2px 5px -2px rgba(0, 0, 0, 0.5);
@@ -24,6 +25,10 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7),
     0 5px 5px -2px rgba(0, 0, 0, 0.5);
   }
+
+  &.active {
+    width: 50%;
+  }
 }
 
 
@@ -31,8 +36,27 @@
 
 .control-strict-wrapper {
   line-height: 38px;
+  user-select: none;
 
   label.control-strict {
     margin-bottom: 0;
+  }
+}
+
+
+// Streak
+.streak {
+  //opacity: 0;
+  //pointer-events: none;
+  transform: scale(0);
+  transform-origin: 30% top;
+
+  transition: transform 0.5s ease-in-out;
+
+  &.active {
+    //opacity: 1;
+    //pointer-events: auto;
+    transform: scale(1);
+    //transition: all 0.5s linear 0.3s;
   }
 }

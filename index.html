@@ -7,7 +7,7 @@
 
     <!-- Bootstrap v4 already compiled -->
     <link rel="stylesheet" href="assets/libraries/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="style.css">
 </head>
 <body ng-app="simonGame">
@@ -48,20 +48,23 @@
         <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
             <div class="row controls-wrapper">
                 <div class="control-button-wrapper">
-                    <button role="button" class="form-control control-button" angular-ripple>Start</button>
+                    <button role="button" class="form-control control-button" angular-ripple ng-click="controlButtonPress()" ng-class="{'active': game.gameInProgress}">
+                        <span ng-hide="game.gameInProgress">Start</span>
+                        <span ng-show="game.gameInProgress">Reset</span>
+                    </button>
                 </div>
 
                 <div class="control-strict-wrapper">
                     <label class="control-strict">
-                        <input type="checkbox">
+                        <input type="checkbox" ng-model="strictMode">
                         Strict mode
                     </label>
                 </div>
             </div>
 
             <div class="row m-y-md">
-                <div class="col-xs-12 text-center">
-                    <h2>Streak: 20</h2>
+                <div class="streak col-xs-12 text-center" ng-class="{'active': currentStreak > 0}">
+                    <h2>Streak: {{currentStreak}}</h2>
                 </div>
             </div>
 
@@ -83,6 +86,7 @@
 <script src="bower_components/howler.js/howler.min.js"></script>
 
 <!-- Custom -->
+<script src="assets/js/game-class.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
