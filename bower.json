@@ -1,0 +1,21 @@
+{
+  "name": "simon-game",
+  "version": "0.0.0",
+  "authors": [
+    "Grzegorz Rozdzialik <voreny.gelio@gmail.com>"
+  ],
+  "description": "Simon Game",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#~1.4.5",
+    "howler.js": "~1.1.26"
+  }
+}

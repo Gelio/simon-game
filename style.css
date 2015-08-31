@@ -1,0 +1,47 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  color: rgba(0, 0, 0, 0.87); }
+
+header.header {
+  background-color: #5CA9FF;
+  color: rgba(0, 0, 0, 0.54);
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.5); }
+
+.game-button {
+  width: 49%;
+  margin-bottom: 2%;
+  float: left;
+  position: relative;
+  border-radius: 5px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 0 2px 5px -2px rgba(0, 0, 0, 0.5);
+  -webkit-transition: box-shadow 0.3s ease-in-out, background-color 0.1s ease-in-out;
+          transition: box-shadow 0.3s ease-in-out, background-color 0.1s ease-in-out; }
+  .game-button:first-of-type {
+    margin-right: 2%; }
+  .game-button:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7), 0 5px 5px -2px rgba(0, 0, 0, 0.5); }
+  .game-button:after {
+    content: '';
+    display: block;
+    padding-top: 50%; }
+
+.game-button.red {
+  background-color: #c0392b; }
+  .game-button.red.active {
+    background-color: #e74c3c; }
+.game-button.yellow {
+  background-color: #f39c12; }
+  .game-button.yellow.active {
+    background-color: #f1c40f; }
+.game-button.green {
+  background-color: #27ae60; }
+  .game-button.green.active {
+    background-color: #2ecc71; }
+.game-button.blue {
+  background-color: #2980b9; }
+  .game-button.blue.active {
+    background-color: #3498db; }

@@ -1,0 +1,73 @@
+section.content {
+  //overflow: auto;
+}
+
+.game-button {
+  width: 49%;
+  margin-bottom: 2%;
+  float: left;
+
+  //height: 100px;   // deleted because the :after takes care of height
+  position: relative;
+
+  border-radius: 5px;
+
+  user-select: none;
+
+  // First - overall, second - directional
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7),
+    0 2px 5px -2px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease-in-out, background-color 0.1s ease-in-out;
+
+  &:first-of-type {
+    margin-right: 2%;
+  }
+
+  &:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7),
+      0 5px 5px -2px rgba(0, 0, 0, 0.5);
+  }
+
+  // Make sure it's a rectangle
+  &:after {
+    content: '';
+    display: block;
+    padding-top: 50%;
+  }
+}
+
+
+// Colors
+.game-button {
+  &.red {
+    background-color: #c0392b;
+
+    &.active {
+      background-color: #e74c3c;
+    }
+  }
+
+  &.yellow {
+    background-color: #f39c12;
+
+    &.active {
+      background-color: #f1c40f;
+    }
+  }
+
+  &.green {
+    background-color: #27ae60;
+
+    &.active {
+      background-color: #2ecc71;
+    }
+  }
+
+  &.blue {
+    background-color: #2980b9;
+
+    &.active {
+      background-color: #3498db;
+    }
+  }
+}

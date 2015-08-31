@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simon Game</title>
+
+    <!-- Bootstrap v4 already compiled -->
+    <link rel="stylesheet" href="assets/libraries/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-app="simonGame">
+<header class="header p-y m-b">
+    <div class="container text-center">
+        <h1 class="display-1 text-uppercase">Simon Game</h1>
+    </div>
+</header>
+
+<section class="content m-b" ng-controller="MainCtrl">
+    <div class="game container">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+            <div class="row clearfix">
+                <div class="game-button red" ng-click="buttonPress(0)" ng-class="{'active': buttonActive[0]}">
+
+                </div>
+
+                <div class="game-button yellow" ng-click="buttonPress(1)" ng-class="{'active': buttonActive[1]}">
+
+                </div>
+            </div>
+
+
+
+            <div class="row clearfix">
+                <div class="game-button green" ng-click="buttonPress(2)" ng-class="{'active': buttonActive[2]}">
+
+                </div>
+
+                <div class="game-button blue" ng-click="buttonPress(3)" ng-class="{'active': buttonActive[3]}">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<footer class="footer text-center">
+    Created by <a href="http://voreny.bitbucket.org/">Grzegorz Rozdzialik</a> Copyright 2015
+</footer>
+
+
+<!-- Angular -->
+<script src="bower_components/angular/angular.min.js"></script>
+
+<!-- Howler.js -->
+<script src="bower_components/howler.js/howler.min.js"></script>
+
+<!-- Custom -->
+<script src="main.js"></script>
+</body>
+</html>
